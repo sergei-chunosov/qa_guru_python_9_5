@@ -1,5 +1,6 @@
 from selene import browser, have, command
 from time import sleep
+import os.path
 
 
 def test_add_form(browser_settings_demoqa):
@@ -21,7 +22,7 @@ def test_add_form(browser_settings_demoqa):
     browser.element('#subjectsInput').type('En')
     browser.element('#react-select-2-option-0').should(have.exact_text('English')).click()
     browser.element('[for=hobbies-checkbox-3]').perform(command.js.scroll_into_view).click()
-    browser.element('#uploadPicture').send_keys('/home/necros/bar-h.png')
+    browser.element('#uploadPicture').send_keys(os.path.abspath('bar-h.png'))
     browser.element('#currentAddress').type('SPB')
     browser.element('#state').click().element('#react-select-3-option-2').should(have.exact_text('Haryana')).click()
     browser.element('#city').click().element('#react-select-4-option-0').should(have.exact_text('Karnal')).click()
